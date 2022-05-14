@@ -7,14 +7,24 @@
 body {
   background-color: rgb(207, 207, 207);
   font-family: "Radio Canada", sans-serif;
+  height: 100vh;
+  /* border: 2px solid red; */
 }
 
 .score-container {
   display: grid;
   justify-content: center;
+  /* border: 2px solid green; */
 }
 
 .score {
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 32px;
+}
+
+.questions-container {
+  height: 91.5%;
+  display: grid;
+  place-items: center;
+  /* border: 2px solid blue; */
 }
