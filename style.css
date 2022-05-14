@@ -23,10 +23,9 @@ body {
 }
 
 .questions-container {
-  height: 60%;
+  height: 65%;
   display: grid;
   place-items: center;
-  /* border: 2px solid blue; */
 }
 
 .question {
@@ -35,4 +34,32 @@ body {
   padding: 25px 35px;
   font-size: 24px;
   border-radius: 10px;
+}
+
+.answer-options {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  /* border: 2px solid black; */
+}
+
+.option {
+  background-color: #fff;
+  padding: 20px 40px;
+  border-radius: 100vw;
+  border: none;
+  box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
+}
+
+.option:hover {
+  cursor: pointer;
+}
+
+.correct {
+  background-color: #40c057;
+}
+
+.incorrect {
+  background-color: #f03e3e;
+  color: #fff;
 }
