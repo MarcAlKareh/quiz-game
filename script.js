@@ -7,11 +7,13 @@ const questionData = {
   answers: [],
 };
 
+///////////////////////////////////////////////////
+// Getting Question data and storing them in object
+
 const getQuestions = async function () {
   const res = await fetch(`https://opentdb.com/api.php?amount=10`);
 
   const { results: data } = await res.json();
-  console.log(data);
 
   data.forEach(obj => {
     questionData.questions.push(obj.question);
@@ -23,20 +25,46 @@ const getQuestions = async function () {
   console.log(questionData.questions);
 };
 
+///////////////////////////////////////////////////
+// Promisifying functionality for waiting for question to be answered in order to display next question
+const waitForUser = function () {
+  return new Promise(function (resolve) {
+    optionsContainer.addEventListener('click', function (e) {
+      // Find closest option button
+      const btnClicked = e.target.closest('.option');
+      if (!btnClicked) return;
+      resolve(btnClicked);
+    });
+  });
+};
+
+// Display question and answers
 const setQuestionAndAnswer = async function () {
   await getQuestions();
   console.log(questionData.answers);
-  questionEl.textContent = questionData.questions[0];
 
+  // Display answer options with data from object
   let html = ``;
 
-  questionData.answers.forEach(optionsData => {
-    optionsData.options.forEach(option => {
+  // Displays next question
+  for (let i = 0; i < questionData.questions.length; i++) {
+    html = ``;
+    optionsContainer.innerHTML = '';
+
+    questionEl.textContent = questionData.questions[i];
+
+    // Display answer options for question
+    questionData.answers[i].options.forEach(option => {
       html += `<button class="option">${option}</button>`;
     });
-  });
 
-  optionsContainer.insertAdjacentHTML('beforeend', html);
+    // Insert buttons into HTML
+    optionsContainer.insertAdjacentHTML('beforeend', html);
+
+    // Check for click on an answer option
+    const btn = await waitForUser();
+    console.log('here');
+  }
 };
 
 setQuestionAndAnswer();
