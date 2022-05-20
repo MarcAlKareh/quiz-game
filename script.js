@@ -1,4 +1,4 @@
-const score = document.querySelector('.score-number');
+const scoreEl = document.querySelector('.score-number');
 const questionEl = document.querySelector('.question-text');
 const optionsContainer = document.querySelector('.answer-options');
 
@@ -6,6 +6,8 @@ const questionData = {
   questions: [],
   answers: [],
 };
+
+let score = 0;
 
 ///////////////////////////////////////////////////
 // Getting Question data and storing them in object
@@ -64,6 +66,11 @@ const setQuestionAndAnswer = async function () {
     // Check for click on an answer option
     const btn = await waitForUser();
     console.log('here');
+
+    if (btn.textContent === questionData.answers[i].correctAnswer) {
+      score++;
+      scoreEl.textContent = score;
+    }
   }
 };
 
