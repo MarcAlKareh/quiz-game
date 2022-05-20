@@ -40,6 +40,10 @@ const waitForUser = function () {
   });
 };
 
+const wait = function (sec) {
+  return new Promise(resolve => setTimeout(resolve, sec * 1000));
+};
+
 // Display question and answers
 const setQuestionAndAnswer = async function () {
   await getQuestions();
@@ -65,11 +69,19 @@ const setQuestionAndAnswer = async function () {
 
     // Check for click on an answer option
     const btn = await waitForUser();
-    console.log('here');
 
+    // Check if user chose correct answer
     if (btn.textContent === questionData.answers[i].correctAnswer) {
+      // Updates score
       score++;
       scoreEl.textContent = score;
+
+      // Adds CSS classes to element
+      btn.classList.add('correct');
+      await wait(2);
+    } else {
+      btn.classList.add('incorrect');
+      await wait(2);
     }
   }
 };
