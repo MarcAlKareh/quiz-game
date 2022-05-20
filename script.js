@@ -40,9 +40,31 @@ const waitForUser = function () {
   });
 };
 
+// Promisifying setTimeout function
 const wait = function (sec) {
   return new Promise(resolve => setTimeout(resolve, sec * 1000));
 };
+
+// Function to shuffle the array using
+const shuffle = function (array) {
+  // Using Fisher-Yates algorithm
+  let currentIndex = array.length,
+    randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    [array[randomIndex], array[currentIndex]] = [
+      array[currentIndex],
+      array[randomIndex],
+    ];
+  }
+
+  return array;
+};
+
+console.log(shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
 
 // Display question and answers
 const setQuestionAndAnswer = async function () {
@@ -60,6 +82,7 @@ const setQuestionAndAnswer = async function () {
     questionEl.textContent = questionData.questions[i];
 
     // Display answer options for question
+    shuffle(questionData.answers[i].options);
     questionData.answers[i].options.forEach(option => {
       html += `<button class="option">${option}</button>`;
     });
