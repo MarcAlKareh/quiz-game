@@ -1,6 +1,7 @@
 const scoreEl = document.querySelector('.score-number');
 const questionEl = document.querySelector('.question-text');
 const optionsContainer = document.querySelector('.answer-options');
+const resetEl = document.querySelector('.reset');
 
 const questionData = {
   questions: [],
@@ -64,7 +65,10 @@ const shuffle = function (array) {
   return array;
 };
 
-// console.log(shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
+const reset = async function () {
+  // Make the game reset element appear on screen
+  resetEl.classList.remove('hidden');
+};
 
 // Display question and answers
 const setQuestionAndAnswer = async function () {
@@ -103,7 +107,7 @@ const setQuestionAndAnswer = async function () {
 
       // Adds CSS classes to element
       btn.classList.add('correct');
-      await wait(2);
+      if (i !== questionData.questions.length - 1) await wait(2);
     } else {
       btn.classList.add('incorrect');
 
@@ -113,10 +117,11 @@ const setQuestionAndAnswer = async function () {
       );
       optionCorrect?.classList.add('correct');
       // console.log(optionCorrect);
-
-      await wait(2);
+      if (i !== questionData.questions.length - 1) await wait(2);
     }
   }
+
+  await reset();
 };
 
 setQuestionAndAnswer();
