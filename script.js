@@ -64,7 +64,7 @@ const shuffle = function (array) {
   return array;
 };
 
-console.log(shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
+// console.log(shuffle([1, 2, 3, 4, 5, 6, 7, 8]));
 
 // Display question and answers
 const setQuestionAndAnswer = async function () {
@@ -78,6 +78,8 @@ const setQuestionAndAnswer = async function () {
   for (let i = 0; i < questionData.questions.length; i++) {
     html = ``;
     optionsContainer.innerHTML = '';
+
+    console.log(i);
 
     questionEl.textContent = questionData.questions[i];
 
@@ -104,6 +106,14 @@ const setQuestionAndAnswer = async function () {
       await wait(2);
     } else {
       btn.classList.add('incorrect');
+
+      const options = Array.from(document.querySelectorAll('.option'));
+      const optionCorrect = options.find(
+        op => op.textContent === questionData.answers[i].correctAnswer
+      );
+      optionCorrect?.classList.add('correct');
+      // console.log(optionCorrect);
+
       await wait(2);
     }
   }
