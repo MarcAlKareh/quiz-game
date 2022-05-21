@@ -26,6 +26,7 @@ body {
   height: 65%;
   display: grid;
   place-items: center;
+  /* position: relative; */
 }
 
 .question {
@@ -44,7 +45,8 @@ body {
   /* border: 2px solid black; */
 }
 
-.option {
+.option,
+.reset {
   background-color: #fff;
   padding: 20px 40px;
   border-radius: 100vw;
@@ -56,6 +58,11 @@ body {
   cursor: pointer;
 }
 
+.reset {
+  font-size: 20px;
+  padding: 30px 50px;
+}
+
 .correct {
   background-color: #40c057;
 }
@@ -63,4 +70,8 @@ body {
 .incorrect {
   background-color: #f03e3e;
   color: #fff;
+}
+
+.hidden {
+  display: none;
 }
