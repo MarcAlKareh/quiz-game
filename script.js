@@ -70,17 +70,19 @@ const reset = function (resetFunction) {
   resetEl.classList.remove('hidden');
 
   return new Promise(function (resolve) {
-    resetEl.addEventListener('click', function () {
+    resetEl.addEventListener('click', async function () {
       // Clear question data object and score
-      questionData.questions = questionData.answers = [];
+      questionData.questions = [];
+      questionData.answers = [];
+
       score = 0;
       scoreEl.textContent = 0;
 
       // Hide reset button
-      resetEl.classList.add('hidden');
+      this.classList.add('hidden');
 
       // Start quiz again
-      resetFunction();
+      await resetFunction();
       resolve();
     });
   });
@@ -89,7 +91,7 @@ const reset = function (resetFunction) {
 // Display question and answers
 const setQuestionAndAnswer = async function () {
   await getQuestions();
-  console.log(questionData.answers);
+  console.log(questionData);
 
   // Display answer options with data from object
   let html = ``;
