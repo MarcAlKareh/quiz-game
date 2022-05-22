@@ -54,13 +54,14 @@ body {
   box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.07);
 }
 
-.option:hover {
-  cursor: pointer;
-}
-
 .reset {
   font-size: 20px;
   padding: 30px 50px;
+}
+
+.option:hover,
+.reset:hover {
+  cursor: pointer;
 }
 
 .correct {
