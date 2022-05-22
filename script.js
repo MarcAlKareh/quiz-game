@@ -65,9 +65,25 @@ const shuffle = function (array) {
   return array;
 };
 
-const reset = async function () {
+const reset = function (resetFunction) {
   // Make the game reset element appear on screen
   resetEl.classList.remove('hidden');
+
+  return new Promise(function (resolve) {
+    resetEl.addEventListener('click', function () {
+      // Clear question data object and score
+      questionData.questions = questionData.answers = [];
+      score = 0;
+      scoreEl.textContent = 0;
+
+      // Hide reset button
+      resetEl.classList.add('hidden');
+
+      // Start quiz again
+      resetFunction();
+      resolve();
+    });
+  });
 };
 
 // Display question and answers
@@ -121,7 +137,7 @@ const setQuestionAndAnswer = async function () {
     }
   }
 
-  await reset();
+  await reset(setQuestionAndAnswer);
 };
 
 setQuestionAndAnswer();
