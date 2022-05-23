@@ -116,7 +116,27 @@ const setQuestionAndAnswer = async function () {
     }
   }
 
-  // Show
+  // Show reset button
+  resetEl.classList.remove('hidden');
+
+  // Listen for click event on reset button and reset quiz
+  resetEl.addEventListener('click', function () {
+    resetAmount++;
+
+    // Clear score
+    score = 0;
+    scoreEl.textContent = '0';
+
+    // Clear questionData object
+    questionData.questions = [];
+    questionData.answers = [];
+
+    // Hide reset button
+    resetEl.classList.add('hidden');
+
+    // Repeat quiz
+    setQuestionAndAnswer();
+  });
 };
 
 setQuestionAndAnswer();
