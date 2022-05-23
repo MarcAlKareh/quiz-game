@@ -65,29 +65,6 @@ const shuffle = function (array) {
   return array;
 };
 
-const reset = function (resetFunction) {
-  // Make the game reset element appear on screen
-  resetEl.classList.remove('hidden');
-
-  return new Promise(function (resolve) {
-    resetEl.addEventListener('click', async function () {
-      // Clear question data object and score
-      questionData.questions = [];
-      questionData.answers = [];
-
-      score = 0;
-      scoreEl.textContent = 0;
-
-      // Hide reset button
-      this.classList.add('hidden');
-
-      // Start quiz again
-      await resetFunction();
-      resolve();
-    });
-  });
-};
-
 // Display question and answers
 const setQuestionAndAnswer = async function () {
   await getQuestions();
@@ -139,7 +116,7 @@ const setQuestionAndAnswer = async function () {
     }
   }
 
-  await reset(setQuestionAndAnswer);
+  // Show
 };
 
 setQuestionAndAnswer();
