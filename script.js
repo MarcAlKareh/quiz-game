@@ -121,8 +121,6 @@ const setQuestionAndAnswer = async function () {
 
   // Listen for click event on reset button and reset quiz
   resetEl.addEventListener('click', function () {
-    resetAmount++;
-
     // Clear score
     score = 0;
     scoreEl.textContent = '0';
