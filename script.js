@@ -68,7 +68,6 @@ const shuffle = function (array) {
 // Display question and answers
 const setQuestionAndAnswer = async function () {
   await getQuestions();
-  console.log(questionData);
 
   // Display answer options with data from object
   let html = ``;
@@ -77,8 +76,6 @@ const setQuestionAndAnswer = async function () {
   for (let i = 0; i < questionData.questions.length; i++) {
     html = ``;
     optionsContainer.innerHTML = '';
-
-    console.log(i);
 
     questionEl.textContent = questionData.questions[i];
 
