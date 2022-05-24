@@ -25,7 +25,7 @@ const getQuestions = async function () {
       options: [...obj.incorrect_answers, obj.correct_answer],
     });
   });
-  console.log(questionData.questions);
+  // console.log(questionData.questions);
 };
 
 ///////////////////////////////////////////////////
